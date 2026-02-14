@@ -585,6 +585,9 @@ The `zwave_js.invoke_cc_api` action uses the Command Class API directly. In most
 | `endpoint`      | no       | The endpoint to call the CC API against.                                                                                                                                                                                                                                                                               |
 | `method_name`   | yes      | The name of the method that is being called from the CC API.                                                                                                                                                                                                                                                           |
 | `parameters`    | yes      | A list of parameters to pass to the CC API method.                                                                                                                                                                                                                                                                     |
+| `wait_for_result` | no     | Boolean that indicates whether or not to wait for a response from the node. If not included in the payload, the integration will decide whether to wait or not. If set to `true`, note that the action can take a while if setting a value on an asleep battery device.                                                |
+
+This action supports returning response data. The response is a mapping keyed by node ID, where each value is another mapping keyed by endpoint index. Both the node ID and endpoint index are strings. When targeting a node by device ID (without specifying an endpoint), endpoint `0` is used. Asleep battery devices return `null` unless `wait_for_result` is set to `true`.
 
 ### Action: Refresh notifications
 
